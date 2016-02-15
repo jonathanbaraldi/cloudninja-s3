@@ -27,12 +27,12 @@ app.use(function(req, res, next) {
 app.get('/',function(req,res){
 	
     var params = {
-        Bucket: 'cloudninja-TESTE',
+        Bucket: 'cloudninja-TESTE'
     };
     s3.createBucket(params, function(err, data) {
         if (err) {
           returnS3(err);
-            console.log(err);
+          console.log(err);
         } else {
           returnS3(data);
           console.log(data);
@@ -40,6 +40,7 @@ app.get('/',function(req,res){
     });
 
     var returnS3 = function(result){
+        
         result = JSON.stringify(result);
         var body = '<html>'
   		    +'	<head>'
@@ -48,7 +49,7 @@ app.get('/',function(req,res){
   		    +'	<body>'
   		    +	result
   		    +'	</body>'
-  	         +'</html>';
+  	      +'</html>';
         console.log(result);
         res.writeHead(200,{"Content-Type" : "text/html"});
         res.write(body);
@@ -58,5 +59,5 @@ app.get('/',function(req,res){
 });
 
 app.listen(8080,function(){
-	console.log("Conectado e escutando na porta 8080");
+  console.log("Conectado e escutando na porta 8080");
 });

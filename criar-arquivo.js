@@ -29,13 +29,24 @@ app.get('/',function(req,res){
     var params = {
         Bucket: 'cloudninja-TESTE',
     };
-    s3.createBucket(params, function(err, data) {
+
+
+    var dstBucket = 'cloudninja-TESTE';
+    var dstKey = 'arquivo.txt';
+    var arquivo = 'Parabéns Ninja, você completou com sucesso essa tarefa!';
+    
+    s3.putObject({
+        Bucket: dstBucket,
+        Key: dstKey,
+        Body: arquivo
+    },
+    function(err, data) {
         if (err) {
-          returnS3(err);
+            returnS3(err);
             console.log(err);
         } else {
-          returnS3(data);
-          console.log(data);
+            returnS3(data);
+            console.log(data);
         }
     });
 
