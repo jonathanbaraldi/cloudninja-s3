@@ -42,7 +42,7 @@ app.get('/',function(req,res){
 
     var returnS3 = function(result){
         // result = JSON.stringify(result);
-        var container = result.Body.toString('base64');
+        var container = result.Body.toString();
         var body = '<html>'
   		    +'	<head>'
   		    +'	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>'
