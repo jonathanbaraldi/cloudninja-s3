@@ -25,17 +25,18 @@ app.use(function(req, res, next) {
 
 // GET
 app.get('/',function(req,res){
-	
+
     var params = {
-        Bucket: 'cloudninja-TESTE',
+      Bucket: 'cloudninja-jon',
+      Key: 'arquivo.txt'
     };
-    s3.createBucket(params, function(err, data) {
+    s3.deleteObject(params, function(err, data) {
         if (err) {
-          returnS3(err);
+            returnS3(err);
             console.log(err);
         } else {
-          returnS3(data);
-          console.log(data);
+            returnS3(data);
+            console.log(data);
         }
     });
 
