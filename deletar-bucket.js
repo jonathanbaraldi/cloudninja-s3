@@ -23,41 +23,37 @@ app.use(function(req, res, next) {
     next();
 });
 
-
 // GET
 app.get('/',function(req,res){
 	
-	// Iniciando objeto S3
-	var s3 = new AWS.S3();
-    
-  s3.listBuckets(function(error, data) {
-    	
-    if (error) {
-      returnS3(error);
-    	console.log(error);
-    } else {
-      returnS3(data);
-      console.log(data);
+    var params = {
+        Bucket: 'cloudninja-TESTE',
+    };
+    s3.deleteBucket(params, function(err, data) {
+        if (err) {
+          returnS3(err);
+            console.log(err);
+        } else {
+          returnS3(data);
+          console.log(data);
+        }
+    });
+
+    var returnS3 = function(result){
+        result = JSON.stringify(result);
+        var body = '<html>'
+  		    +'	<head>'
+  		    +'	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>'
+  		    +'	</head>'
+  		    +'	<body>'
+  		    +	result
+  		    +'	</body>'
+  	         +'</html>';
+        console.log(result);
+        res.writeHead(200,{"Content-Type" : "text/html"});
+        res.write(body);
+        res.end();
     }
-        
-  });
-
-  var returnS3 = function(result){
-    result = JSON.stringify(result);
-
-  	var body = '<html>'
-  		+'	<head>'
-  		+'	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>'
-  		+'	</head>'
-  		+'	<body>'
-  		+	result
-  		+'	</body>'
-  	    +'</html>';
-    console.log(result);
-    res.writeHead(200,{"Content-Type" : "text/html"});
-    res.write(body);
-    res.end();
-  }
 	
 });
 
