@@ -27,7 +27,7 @@ app.use(function(req, res, next) {
 app.get('/',function(req,res){
 	
     var params = {
-        Bucket: 'cloudninja-TESTE',
+        Bucket: 'cloudninja-jon',
     };
     s3.deleteBucket(params, function(err, data) {
         if (err) {
