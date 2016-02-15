@@ -26,15 +26,10 @@ app.use(function(req, res, next) {
 // GET
 app.get('/',function(req,res){
 	
-    var params = {
-        Bucket: 'cloudninja-TESTE',
-    };
-
-
-    var dstBucket = 'cloudninja-TESTE';
+    var dstBucket = 'cloudninja-jon';
     var dstKey = 'arquivo.txt';
     var arquivo = 'Parabéns Ninja, você completou com sucesso essa tarefa!';
-    
+
     s3.putObject({
         Bucket: dstBucket,
         Key: dstKey,
